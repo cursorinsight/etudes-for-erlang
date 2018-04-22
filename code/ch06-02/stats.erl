@@ -41,8 +41,8 @@ maximum([Head|Tail], Result) ->
   end.
 
 %% @doc Return the range (maximum and minimum) of a list of numbers
-%% as a two-element list.
--spec(range([number()]) -> [number()]).
+%% as a pair.
+-spec(range([number()]) -> {number(), number()}).
 
-range(NumberList) -> [minimum(NumberList), maximum(NumberList)].
-
+range(NumberList) ->
+    {minimum(NumberList), maximum(NumberList)}.

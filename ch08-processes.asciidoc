@@ -63,7 +63,7 @@ programming will save you minutes of planning."
 Trust me, programs written at the keyboard look like it, and that
 is not meant as a compliment.
 
-Note: This does not mean that you should never use +erl+ or write anything
+Note: This does not mean that you should never use `erl` or write anything
 at the keyboard. If you are wondering about how a specific part of Erlang
 works and need to write a small test program to find out, go ahead and do that
 right away.
@@ -148,12 +148,12 @@ she hasn't picked up yet.
 
 Hints for Testing
 ^^^^^^^^^^^^^^^^^
-Modify the +cards+ module that you wrote in <<CH07-ET06,Étude 7-6>>
+Modify the `cards` module that you wrote in link:ch07-higher-order-functions-and-lists.asciidoc[Étude 7-6].
 to generate a small deck with, say, only
 four cards in two suits. If you try to play with a full deck, the game could
 go on for a very, very long time.
 
-Use plenty of calls to +io:format/2+ to see what your code is really doing.
+Use plenty of calls to `io:format/2` to see what your code is really doing.
 
-<<SOLUTION08-ET01,See a suggested solution in Appendix A.>>
+link:code/ch08-01[See a suggested solution here.]
 

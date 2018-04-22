@@ -103,12 +103,9 @@ returns a list of integers in the form
 
 You'll use the `re:split/3` function from Erlang's
 regular expression (`re`) module to accomplish the task.
-How, you may ask, does that function work? Ask Erlang!
-The command `erl -man re` will give you the online documentation for 
-the `re` module.
-
-Scroll down the resulting page until you find 
-`split(Subject, RE, Options) -> SplitList` and read the examples.
+How, you may ask, does that function work? Ask the Erlang documentation!
+Type `re` in the search of the link:http://erlang.org/doc/search/[online Erlang documentation.]
+Click on `split/3` on the left pane and read the examples.
 
 When you write the `-spec` for this function (you _have_ been
 writing documentation for your functions, haven't you?), the type

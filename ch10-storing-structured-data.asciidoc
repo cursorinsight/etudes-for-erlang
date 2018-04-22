@@ -13,7 +13,7 @@ database that keeps track of phone calls.
 
 Part One
 ^^^^^^^^
-Create a file named +phone_records.hrl+ that defines a record
+Create a file named `phone_records.hrl` that defines a record
 with these fields:
 
 * Phone number
@@ -27,16 +27,16 @@ field names you wish.
 
 Part Two
 ^^^^^^^^
-In a module named +phone_ets+,
+In a module named `phone_ets`,
 create an ETS table for phone calls by reading a file. The function
-that does this will be named +setup/1+, and its argument will be the
+that does this will be named `setup/1`, and its argument will be the
 name of the file containing the data.
 
 Copy the following text into a file named
-+call_data.csv+ and save the file in the same directory where you
+`call_data.csv` and save the file in the same directory where you
 did part one. 
 
-----
+-----
 650-555-3326,2013-03-10,09:01:47,2013-03-10,09:05:11
 415-555-7871,2013-03-10,09:02:20,2013-03-10,09:05:09
 729-555-8855,2013-03-10,09:00:55,2013-03-10,09:02:18
@@ -57,11 +57,11 @@ did part one.
 301-555-0433,2013-03-10,09:14:07,2013-03-10,09:15:08
 415-555-7871,2013-03-10,09:06:15,2013-03-10,09:09:32
 650-555-3326,2013-03-10,09:10:12,2013-03-10,09:13:09
-----
+-----
 
 So, how do you read a file? Take just the first three lines,
-and put them into a file called +smallfile.csv+, then do the following
-commands from +erl+
+and put them into a file called `smallfile.csv`, then do the following
+commands from `erl`
 
 [source, erl]
 -----
@@ -77,26 +77,29 @@ commands from +erl+
 eof
 6> file:open("nosuchfile", [read]).
 {error,enoent}
-----
+-----
 
 In the preceding example, lines 1 through 5 show how to open a file
 and read it. You can tell you are at the end of file when you get an
-atom (+eof+) instead of a list (remember, Erlang strings are lists).
+atom (`eof`) instead of a list (remember, Erlang strings are lists).
 Line 6 shows what happens if you try to open a file
 that doesn't exist.
 
 The phone number is the key for this data. Since there are multiple
-calls per phone number, you will need a +bag+ type table. 
+calls per phone number, you will need a `bag` type table. 
 To get the individual items from each line, use
-+re:split/2+, much as you did in <<CH05-ET02,Étude 5-2>>.
+`re:split/2`, much as you did in link:ch05-strings.asciidoc[Étude 5-2].
 
 Part Three
 ^^^^^^^^^^
 Write functions to summarize the number of minutes for a single
-phone number (+summary/1+) or for all phone numbers.
-(+summary/0+). These functions return a list of tuples in the form:
+phone number (`summary/1`) or for all phone numbers.
+(`summary/0`). These functions return a list of tuples in the form:
 
-+[{_phoneNumber1_, _minutes_]},{_phoneNumber2_, _minutes_}, ...]+
+[subs="quotes"]
+-----
+[{_phoneNumber1_, _minutes_]},{_phoneNumber2_, _minutes_}, ...]
+-----
 
 You could write your own code to do time and date calculations to
 figure out the duration of a phone call, but there's a limit on how
@@ -106,12 +109,12 @@ begins on 31 December 2013 at 11:58:36 p.m. and ends on 1 January 2014 at
 12:14:22 p.m. I don't even want to think about calls that start on
 28 February and go to the next day.
 
-So, instead, use the +calendar:datetime_to_gregorian_seconds/1+ function
+So, instead, use the `calendar:datetime_to_gregorian_seconds/1` function
 to convert a date and time to the number of seconds since the year zero.
 (I swear I am not making this up.) The argument to this function is a
 tuple in the form:
 
-[subs="quotes"] 
+[subs="quotes"]
 -----
 {{_year_, _month_, _day_}, {_hours_, _minutes_, _seconds_}} %% for example
 {{2013, 07, 14}, {14, 49, 21}}
@@ -119,7 +122,7 @@ tuple in the form:
 
 Round up any number of seconds to the next minute for ech call. Thus, if
 a call lasts 4 minutes and 6 seconds, round it up to 5 minutes.
-Hint: add 59 to the total number of seconds before you +div 60+.
+Hint: add 59 to the total number of seconds before you `div 60`.
 
 NOTE: Now might be the time to rewrite part two so that your dates and times
 are stored in the appropriate format. That way, you do the conversion
@@ -145,7 +148,7 @@ ok
  {"650-555-3326",11}]
 -----
 
-<<SOLUTION10-ET01,See a suggested solution in Appendix A.>>
+link:code/ch10-01[See a suggested solution here.]
 
 [[CH10-ET02]]
 Étude 10-2: Using Mnesia
@@ -165,7 +168,7 @@ from those tables when producing a summary.
 
 Part One
 ^^^^^^^^
-You will need to add a record for customers to +phone_records.hrl+. Its fields
+You will need to add a record for customers to `phone_records.hrl`. Its fields
 will be:
 
 * Phone Number (this is the key)
@@ -179,16 +182,16 @@ field names you wish.
 
 Part Two
 ^^^^^^^^
-In a module named +phone_mnesia+,
+In a module named `phone_mnesia`,
 create the Mnesia tables for the two files. The function
-that does this will be named +setup/2+, and its arguments will be the
+that does this will be named `setup/2`, and its arguments will be the
 names of the file containing the data.
 
-Use the phone call data from <<ET10-01,Étude 10-1>>, and
+Use the phone call data from Étude 10-1, and
 use this data for the customers. Put it in a file named
-+customer_data.csv+ or whatever other name you wish.
+`customer_data.csv` or whatever other name you wish.
 
-----
+-----
 213-555-0172,Nakamura,Noriko,,0.12
 301-555-0433,Ekberg,Erik,Engvald,0.07
 415-555-7871,Alvarez,Alberto,Agulto,0.15
@@ -196,7 +199,7 @@ use this data for the customers. Put it in a file named
 729-555-8855,Tran,Truong,Thai,0.09
 838-555-1099,Smith,Samuel,Steven,0.10
 946-555-9760,Bobrov,Bogdan,Borisovitch,0.14
-----
+-----
 
 You could write two functions that all open a file, read data,
 split it into fields, write the data to the Mnesia table, and then keep
@@ -204,19 +207,19 @@ going until end-of-file. These would share a lot of common code. Instead,
 try writing just one function that does the reading, and pass a higher-order
 function to it to do the appropriate "split-and-write" operation.
 
-When I solved this problem, my +fill_table/5+ function took these 
+When I solved this problem, my `fill_table/5` function took these 
 arguments:
 
 * The name of the table (an atom)
 * The name of the file to read (a string)
-* The function that adds the data (a higher-order +fun+)
-* The +record_info+ for the field
-* The type of table. The phone call data is a +bag+, the
-customer data is a +set+.
+* The function that adds the data (a higher-order `fun`)
+* The `record_info` for the field
+* The type of table. The phone call data is a `bag`, the
+customer data is a `set`.
 
 Part Three
 ^^^^^^^^^^
-Write a function named +summary/3+ that takes a last name, first name,
+Write a function named `summary/3` that takes a last name, first name,
 and middle name. It produces a tuple that contains the person's phone number,
 total number of minutes, and total cost for those minutes.
 
@@ -243,29 +246,29 @@ to write the specification for the guards on the customer table twice.
 
 As 
 http://shop.oreilly.com/product/0636920025818.do[Introducing Erlang]
-notes, "you can use the +qlc:q+ function to hold a
-list comprehension and the +qlc:e+ function to process it." Specifically,
-the +qlc:q+ function returns a _query handle_ which you can evaluate
+notes, "you can use the `qlc:q` function to hold a
+list comprehension and the `qlc:e` function to process it." Specifically,
+the `qlc:q` function returns a _query handle_ which you can evaluate
 and which you can also use in place of a list name in a query list
 comprehension.
 
 Here's an example. Let's say you have tables of people and their pets.
-In the +pet+ table, the +owner_id+ references the +id_number+ of someone
-in the +person+ table.
+In the `pet` table, the `owner_id` references the `id_number` of someone
+in the `person` table.
 
 [source, erlang]
-------
+-----
 -record(person,
   {id_number, name, age, gender, city, amount_owed}).
 -record(animal,
   {id_number, name, species, gender, owner_id}).
-------
+-----
 
 You could do a query like this to find a
 specific set of people, and then to find information about their pets:
 
 [source, erlang]
--------
+-----
 get_info() ->
   People = mnesia:transaction(
     fun() -> qlc:e(
@@ -292,7 +295,7 @@ get_info() ->
     end
   ),
   [People, Pets].
-----
+-----
 
 To avoid duplicating the list and guards for the person table, you can make a 
 query list handle for that query and use it again in the animal search. Note
@@ -300,7 +303,7 @@ that you don't have to be in a transacation to create a query handle,
 but you must be in a transaction to process it.
 
 [source,erl]
-----
+-----
 get_info_easier() ->
   
   %% "Pre-process" the list comprehension for finding people
@@ -331,7 +334,6 @@ get_info_easier() ->
     end
   ),
   [People, Pets].
-----
+-----
 
-<<SOLUTION10-ET02,See a suggested solution in Appendix A.>>
-
+link:code/ch10-02[See a suggested solution here.]
