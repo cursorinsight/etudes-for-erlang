@@ -98,8 +98,8 @@ link:code/ch05-01[See a suggested solution here.]
 Write a module named `dates` that contains a function
 `date_parts/1`, which takes a string in ISO date format
 (`"yyyy-mm-dd"`) and
-returns a list of integers in the form
-`[yyyy, mm, dd]`. This function does not need to do any error checking.
+returns a tuple of integers in the form
+`{yyyy, mm, dd}`. This function does not need to do any error checking.
 
 You'll use the `re:split/3` function from Erlang's
 regular expression (`re`) module to accomplish the task.
