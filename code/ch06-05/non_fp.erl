@@ -14,7 +14,6 @@
 -spec(generate_teeth(string(), float()) -> list(list(integer()))).
 
 generate_teeth(TeethPresent, ProbGood) ->
-  random:seed(now()),
   generate_teeth(TeethPresent, ProbGood, []).
 
 %% @doc Helper function that adds tooth data to the ultimate result.
@@ -38,11 +37,12 @@ generate_teeth([$T | Tail], ProbGood, Result) ->
 %% depth to 3.
 
 generate_tooth(ProbGood) ->
-  Good = random:uniform() < ProbGood,
-  case Good of
-    true -> BaseDepth = 2;
-    false -> BaseDepth = 3
-  end,
+  Good = rand:uniform() < ProbGood,
+  BaseDepth =
+    case Good of
+      true -> 2;
+      false -> 3
+    end,
   generate_tooth(BaseDepth, 6).
 
 %% @doc Take the base depth, add a number in range -1..1 to it,
@@ -51,7 +51,7 @@ generate_tooth(ProbGood) ->
 generate_tooth(_Base, 0) -> [];
 
 generate_tooth(Base, N) ->
-  [Base + random:uniform(3) - 2 | generate_tooth(Base, N - 1)].
+  [Base + rand:uniform(3) - 2 | generate_tooth(Base, N - 1)].
   
 test_teeth() ->
   TList = "FTTTTTTTTTTTTTTFTTTTTTTTTTTTTTTT",

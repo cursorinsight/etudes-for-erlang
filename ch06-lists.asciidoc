@@ -325,47 +325,17 @@ and that's what you'll do in this étude.
 
 In order to create the data for the teeth,
 I had to generate random numbers with Erlang's
-`random` module. Try generating a random number uniformly
+`rand` module. Try generating a random number uniformly
 distributed between 0 and 1.0 by typing this in `erl`:
 
 [source,erl]
 -----
-1> random:uniform().
+1> rand:uniform().
 0.4435846174457203
 -----
 
-Now, exit `erl`, restart, and type the same command again. You'll get the
-same number. In order to ensure that you get different sets of random numbers,
-you have to _seed_ the random number generator with a three-tuple. The easiest
-way to get a different seed every time you run the program is to use the
-`now/0` built-in function, which returns a different three-tuple every time
-you call it.
-
-[source,erl]
------
-1> now().
-{1356,887000,432535}
-2> now().
-{1356,887002,15527}
-3> now().
-{1356,887003,831752}
------
-
-Exit `erl`, restart, it and try these commands. Do this a couple of times to
-convince yourself that you really get different random numbers. Don't worry
-about the `undefined`; that's just Erlang's way of telling you that the
-random number generator wasn't seeded before.
-
-[source, erl]
------
-1> random:seed(now()).
-undefined
-2> random:uniform().
-0.27846009966109264
------
-
 If you want to generate a random integer between 1 and `N`, use
-`uniform/1`; thus `random:uniform(10)` will generate a
+`uniform/1`; thus `rand:uniform(10)` will generate a
 random integer from 1 to 10.
 
 Functions that use random numbers have side effects; unlike the `sin` or
