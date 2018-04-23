@@ -145,18 +145,11 @@ the first _month-1_ items in
 the list of days per month. That happens `when` the month number is greater
 than `(13 - length(_days_per_month_list_))`. Hint: use a guard.
 
-Of course, there's still the problem of leap years. You can handle it in
-either `julian/5` or `julian/1`. 
-
-If you want to do the work in `julian/5`, then for non-leap years,
-the last call to `julian/5` adds the number of days in the target month.
-For leap years, the function must add the number of days in the
-target month plus one--but only if the month is after February.
-
-If you want to do the work in `julian/5`, use a `case` to assign either
-`28` or `29` to a variable named `DaysInFeb` (depending on whether the
-year is a leap year), and then use that variable instead of 28 when you
-construct your original days per month list.
+Of course, there's still the problem of leap years. In `julian/1`, use a
+`case` to assign either `28` or `29` to a variable named `DaysInFeb`
+(depending on whether the year is a leap year), and then use that
+variable instead of 28 when you construct your original days per month
+list.
 
 I'll give you the code for the `is_leap_year/1` function for free; it returns
 `true` if the given year is a leap year, `false` otherwise.
