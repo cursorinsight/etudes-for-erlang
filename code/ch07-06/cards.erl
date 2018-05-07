@@ -27,6 +27,6 @@ shuffle([], Acc) -> Acc;
 %% leading elements and the tail of the split list.
 
 shuffle(List, Acc) ->
-  {Leading, [H | T]} = lists:split(random:uniform(length(List)) - 1, List),
+  {Leading, [H | T]} = lists:split(rand:uniform(length(List)) - 1, List),
   shuffle(Leading ++ T, [H | Acc]).
 

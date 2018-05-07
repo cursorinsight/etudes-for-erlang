@@ -91,6 +91,8 @@ has a lower priority than the comparison operators, you don't need the
 parentheses, though it doesn't hurt to have them. Another advantage of
 `orelse` is that it doesn't do any unnecessary comparisons.
 
+link:code/ch07-02[See a suggested solution here.]
+
 [[CH07-ET03]]
 Étude 7-3: Using `lists:foldl/3`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -156,9 +158,10 @@ link:code/ch07-03[See a suggested solution here.]
 [[CH07-ET04]]
 Étude 7-4: Using `lists:split/2`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Use `erl -man lists` to see how the `lists:split/2` function works, or try
-the following example and see if you can figure it out. Experiment to see
-what happens if the first argument is zero.
+Look at http://erlang.org/doc/man/lists.html to see how the
+`lists:split/2` function works, or try the following example and see if
+you can figure it out. Experiment to see what happens if the first
+argument is zero.
 
 [source,erl]
 -----
@@ -244,15 +247,14 @@ doing a shuffle, taken from the Literate Programs Wiki.
 shuffle(List) -> shuffle(List, []).
 shuffle([], Acc) -> Acc;
 shuffle(List, Acc) ->
-  {Leading, [H | T]} = lists:split(random:uniform(length(List)) - 1, List),
+  {Leading, [H | T]} = lists:split(rand:uniform(length(List)) - 1, List),
   shuffle(Leading ++ T, [H | Acc]).
 -----
 
 Wait a moment. If I've just given you the code, what's the purpose
 of this étude? I want you to understand the code. The object of this
-étude is to write the documentation for the algorithm.
-If you aren't sure what the code does, try adding some
-`io:format` statements to see what is happening. If you're totally
-stuck, http://en.literateprograms.org/Fisher-Yates_shuffle_%28Erlang%29[see the explanation from Literate Programs site].
+étude is to write the documentation for the algorithm. If you aren't
+sure what the code does, try adding some `io:format` statements to see
+what is happening.
 
 link:code/ch07-06[See a suggested solution here.]
