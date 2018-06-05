@@ -6,14 +6,14 @@
 -module(bank).
 -export([account/1]).
 
--spec(account(number()) -> number()).
+-spec(account(number()) -> number() | true).
 
 %% @doc create a client and give it a starting balance
 
 account(Balance) ->
   Input = io:get_line("D)eposit, W)ithdraw, B)alance, Q)uit: "),
   Action = hd(Input),
-  
+
   case Action of
     $D ->
       Amount = get_number("Amount to deposit: "),

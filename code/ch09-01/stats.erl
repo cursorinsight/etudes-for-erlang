@@ -10,7 +10,7 @@
 %% try/catch to return an error when there's an empty list,
 %% as there's nothing reasonable to return.
 
--spec(minimum(list()) -> number()).
+-spec(minimum(list()) -> number() | {error, term()}).
 
 minimum(NumberList) ->
   try minimum(NumberList, hd(NumberList)) of
@@ -30,7 +30,7 @@ minimum([Head|Tail], Result) ->
 %% @doc Returns the maximum item in a list of numbers. Catches
 %% errors when given an empty list.
 
--spec(maximum(list()) -> number()).
+-spec(maximum(list()) -> number() | {error, term()}).
 
 maximum(NumberList) ->
   try
@@ -54,7 +54,7 @@ maximum([Head|Tail], Result) ->
 range(NumberList) -> [minimum(NumberList), maximum(NumberList)].
 
 %% @doc Return the mean of the list.
--spec(mean(list()) -> float()).
+-spec(mean(list()) -> float() | {error, term()}).
 
 mean(NumberList) ->
   try
@@ -67,7 +67,7 @@ mean(NumberList) ->
 %% @doc Helper function to generate sums and sums of squares
 %% when calculating standard deviation.
 
--spec(stdv_sums(number(),[number()]) -> [number()]).
+-spec(stdv_sums(number(), [number()]) -> [number()]).
 
 stdv_sums(Value, Accumulator) ->
   [Sum, SumSquares] = Accumulator,
@@ -75,7 +75,7 @@ stdv_sums(Value, Accumulator) ->
 
 %% @doc Calculate the standard deviation of a list of numbers.
 
--spec(stdv([number()]) -> float()).
+-spec(stdv([number()]) -> float() | {error, term()}).
 
 stdv(NumberList) ->
   N = length(NumberList),
