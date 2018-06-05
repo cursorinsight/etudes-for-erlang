@@ -31,10 +31,11 @@ account(Balance) ->
   end,
   if
     Action /= $Q ->
-    account(NewBalance);
-    true -> true
+      account(NewBalance);
+    true ->
+      true
   end.
-  
+
 
 %% @doc Present a prompt and get a number from the
 %% user. Allow either integers or floats.
@@ -68,8 +69,8 @@ transaction(Action, Balance, Amount) ->
     withdraw ->
       if
         Amount > Balance ->
-          error_logger:error_msg("Overdraw ~p from balance ~p~n", [Amount,
-            Balance]),
+          error_logger:error_msg("Overdraw ~p from balance ~p~n",
+                                 [Amount, Balance]),
           io:format("You cannot withdraw more than your current balance of ~p.~n",
             [Balance]),
           NewBalance = Balance;
@@ -88,6 +89,3 @@ transaction(Action, Balance, Amount) ->
 transaction(balance, Balance) ->
   error_logger:info_msg("Balance inquiry ~p~n", [Balance]),
   Balance.
-   
-
-

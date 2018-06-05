@@ -21,7 +21,7 @@ Here is some sample output.
 {error,badarg}
 3> stats:mean([]).
 {error,badarith}
-4> stats:mean(["123", 456]).          
+4> stats:mean(["123", 456]).
 {error,badarith}
 5> stats:stdv([]).
 {error,badarith}
